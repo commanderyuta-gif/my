@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>管理者</title>
+</head>
+<body>
+    <h1>管理者ページ</h1>
+
+    <h2>参加者一覧</h2>
+    <ul>
+        {% for p in participants %}
+            <li>{{ p }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>現在の入力</h2>
+    <ul>
+        {% for name, num in choices.items() %}
+            <li>{{ name }} : {{ num }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if all_done %}
+        <form method="post" action="/judge">
+            <button type="submit">判定する</button>
+        </form>
+    {% else %}
+        <p>全員の入力待ち</p>
+    {% endif %}
+
+    <h2>結果</h2>
+    <p>{{ result }}</p>
+    <p>試行回数：{{ trial_count }}</p>
+
+    <form method="post" action="/next">
+        <button type="submit">次の実験へ</button>
+    </form>
+</body>
+</html>
+
+<script>
+setInterval(() => {
+    location.reload();
+}, 2000);
+</script>

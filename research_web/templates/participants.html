@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>参加者</title>
+</head>
+<body>
+    <h1>{{ name }} さん</h1>
+
+    <h2>数字を選択</h2>
+    <form method="post" action="/choose">
+        <input type="hidden" name="name" value="{{ name }}">
+        {% for i in range(1,6) %}
+            <button type="submit" name="number" value="{{ i }}">{{ i }}</button>
+        {% endfor %}
+    </form>
+
+    <h2>結果</h2>
+    <p>{{ result }}</p>
+    <p>試行回数：{{ trial_count }}</p>
+</body>
+</html>
+
+<script>
+setInterval(() => {
+    location.reload();
+}, 2000);
+</script>
